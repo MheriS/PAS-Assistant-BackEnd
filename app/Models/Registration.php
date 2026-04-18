@@ -19,6 +19,10 @@ class Registration extends Model
         'visit_time',
         'room_block',
         'status',
+        'pengikut_laki',
+        'pengikut_perempuan',
+        'pengikut_anak',
+        'jumlah_pengikut',
     ];
 
     public $incrementing = false;

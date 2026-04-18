@@ -27,6 +27,10 @@ class RegistrationController extends Controller
             'visitDate' => 'required|date',
             'visitTime' => 'nullable|string',
             'roomBlock' => 'nullable|string',
+            'pengikutLaki' => 'nullable|integer',
+            'pengikutPerempuan' => 'nullable|integer',
+            'pengikutAnak' => 'nullable|integer',
+            'jumlahPengikut' => 'nullable|integer',
         ]);
 
         $registration = Registration::create([
@@ -41,6 +45,10 @@ class RegistrationController extends Controller
             'visit_date' => $validated['visitDate'],
             'visit_time' => $validated['visitTime'] ?? '',
             'room_block' => $validated['roomBlock'] ?? null,
+            'pengikut_laki' => $validated['pengikutLaki'] ?? 0,
+            'pengikut_perempuan' => $validated['pengikutPerempuan'] ?? 0,
+            'pengikut_anak' => $validated['pengikutAnak'] ?? 0,
+            'jumlah_pengikut' => $validated['jumlahPengikut'] ?? 0,
             'status' => 'pending',
         ]);
 
