@@ -3,12 +3,14 @@
 use App\Http\Controllers\Api\RegistrationController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ChatbotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/wbps/search', [\App\Http\Controllers\Api\WBPController::class, 'search']);
+Route::post('/chatbot', [ChatbotController::class, 'chat']);
 
 Route::get('/registrations', [RegistrationController::class, 'index']);
 Route::post('/registrations', [RegistrationController::class, 'store']);
