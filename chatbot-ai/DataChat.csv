@@ -1,0 +1,151 @@
+text,intent,entity_name,entity_value
+"Saya ingin mengetahui jadwal kunjungan hari Selasa",cek_jadwal,hari,Selasa
+"Apakah hari Selasa ada kunjungan?",cek_jadwal,hari,Selasa
+"Jadwal kunjungan hari Rabu bagaimana?",cek_jadwal,hari,Rabu
+"Apakah hari Kamis bisa membesuk?",cek_jadwal,hari,Kamis
+"Apakah hari Jumat ada layanan kunjungan?",cek_jadwal,hari,Jumat
+"Apakah boleh membawa makanan?",barang_bawaan,jenis_barang,makanan
+"Bolehkah membawa nasi dan lauk?",barang_bawaan,jenis_barang,makanan
+"Apakah boleh membawa minuman botol?",barang_bawaan,jenis_barang,minuman
+"Apakah air mineral boleh dibawa?",barang_bawaan,jenis_barang,minuman
+"Barang apa saja yang dilarang?",barang_terlarang,jenis_barang,barang terlarang
+"Apakah boleh membawa rokok?",barang_terlarang,jenis_barang,rokok
+"Apakah charger HP boleh dibawa?",barang_terlarang,jenis_barang,charger
+"Bagaimana aturan pakaian saat kunjungan?",ketentuan_pakaian,kategori,pakaian
+"Apakah boleh memakai sandal?",ketentuan_pakaian,jenis_pakaian,sandal
+"Apakah boleh memakai kaos oblong?",ketentuan_pakaian,jenis_pakaian,kaos
+"Apakah harus memakai pakaian sopan?",ketentuan_pakaian,kategori,pakaian sopan
+"Toilet ada di mana?",fasilitas,nama_fasilitas,kamar mandi
+"Kamar mandi sebelah mana?",fasilitas,nama_fasilitas,kamar mandi
+"Ruang tunggu ada di mana?",fasilitas,nama_fasilitas,ruang tunggu
+"Musholla ada di mana?",fasilitas,nama_fasilitas,musholla
+"Tempat parkir ada di mana?",fasilitas,nama_fasilitas,tempat parkir
+"Berapa lama durasi kunjungan?",durasi_kunjungan,durasi,waktu
+"Durasi besuk berapa menit?",durasi_kunjungan,durasi,menit
+"Bagaimana cara daftar kunjungan?",cara_pendaftaran,layanan,pendaftaran
+"Bagaimana cara mendaftar besuk?",cara_pendaftaran,layanan,pendaftaran
+"Apa saja syarat kunjungan?",syarat_kunjungan,dokumen,KTP
+"Apakah wajib membawa KTP?",syarat_kunjungan,dokumen,KTP
+"Apakah anak kecil boleh masuk?",ketentuan_pengunjung,kategori,anak
+"Apakah balita boleh ikut kunjungan?",ketentuan_pengunjung,kategori,anak
+"Loket pendaftaran di mana?",lokasi_layanan,tempat,loket
+"Ruang registrasi ada di mana?",lokasi_layanan,tempat,loket
+"Apakah ada musholla untuk pengunjung?",fasilitas,nama_fasilitas,musholla
+"Apakah tersedia kursi tunggu?",fasilitas,nama_fasilitas,ruang tunggu
+"Bisakah membawa pakaian ganti untuk warga binaan?",barang_bawaan,jenis_barang,pakaian
+"Apakah boleh membawa sabun atau perlengkapan mandi?",barang_bawaan,jenis_barang,perlengkapan mandi
+"Jadwal kunjungan hari apa saja?",cek_jadwal,hari,semua hari
+"Kunjungan dibuka hari apa saja?",cek_jadwal,hari,semua hari
+"Hari besuk apa saja ya?",cek_jadwal,hari,semua hari
+"Jadwal layanan kunjungan kapan?",cek_jadwal,hari,jadwal umum
+"Besuk buka hari Senin sampai Jumat?",cek_jadwal,hari,hari kerja
+"Apakah hari Minggu ada kunjungan?",cek_jadwal,hari,Minggu
+"Hari libur tetap buka kunjungan?",cek_jadwal,hari,hari libur
+"Jam kunjungan mulai jam berapa?",cek_jadwal,waktu,jam mulai
+"Jam besuk sampai jam berapa?",cek_jadwal,waktu,jam selesai
+"Kunjungan pagi mulai jam berapa?",cek_jadwal,waktu,pagi
+"Kunjungan siang ada tidak?",cek_jadwal,waktu,siang
+"Barang apa saja yang boleh dibawa masuk?",barang_boleh,kategori,umum
+"Apa yang boleh dibawa saat kunjungan?",barang_boleh,kategori,umum
+"Barang yang diperbolehkan apa saja?",barang_boleh,kategori,umum
+"Boleh bawa apa saja?",barang_boleh,kategori,umum
+"Apakah boleh membawa nasi?",barang_bawaan,jenis_barang,makanan
+"Apakah boleh membawa lauk?",barang_bawaan,jenis_barang,makanan
+"Boleh bawa buah-buahan?",barang_bawaan,jenis_barang,makanan
+"Boleh membawa snack?",barang_bawaan,jenis_barang,makanan
+"Air minum boleh dibawa?",barang_bawaan,jenis_barang,minuman
+"Boleh bawa teh botol?",barang_bawaan,jenis_barang,minuman
+"Boleh bawa kopi sachet?",barang_bawaan,jenis_barang,minuman
+"Apakah boleh membawa obat?",barang_bawaan,jenis_barang,obat
+"Apakah boleh membawa pakaian untuk warga binaan?",barang_bawaan,jenis_barang,pakaian
+"Boleh titip sabun?",barang_bawaan,jenis_barang,perlengkapan mandi
+"Barang yang tidak boleh dibawa apa saja?",barang_terlarang,jenis_barang,barang terlarang
+"Apakah boleh membawa pisau kecil?",barang_terlarang,jenis_barang,benda tajam
+"Boleh membawa korek api?",barang_terlarang,jenis_barang,korek api
+"Boleh membawa HP?",barang_terlarang,jenis_barang,handphone
+"Aturan pakaian bagaimana?",ketentuan_pakaian,kategori,pakaian
+"Harus pakai baju sopan ya?",ketentuan_pakaian,kategori,pakaian sopan
+"Boleh pakai celana pendek?",ketentuan_pakaian,jenis_pakaian,celana pendek
+"Boleh pakai jaket?",ketentuan_pakaian,jenis_pakaian,jaket
+"Boleh pakai topi?",ketentuan_pakaian,jenis_pakaian,topi
+"WC ada di mana?",fasilitas,nama_fasilitas,kamar mandi
+"Toilet sebelah mana?",fasilitas,nama_fasilitas,kamar mandi
+"Musholla di mana ya?",fasilitas,nama_fasilitas,musholla
+"Parkiran motor di mana?",fasilitas,nama_fasilitas,tempat parkir
+"Ruang tunggu sebelah mana?",fasilitas,nama_fasilitas,ruang tunggu
+"Apakah ada tempat duduk untuk menunggu?",fasilitas,nama_fasilitas,ruang tunggu
+"Berapa lama waktu besuk?",durasi_kunjungan,durasi,waktu
+"Kunjungan maksimal berapa menit?",durasi_kunjungan,durasi,menit
+"Berapa jam durasi kunjungan?",durasi_kunjungan,durasi,jam
+"Cara daftar besuk bagaimana?",cara_pendaftaran,layanan,pendaftaran
+"Daftar kunjungan online bagaimana?",cara_pendaftaran,layanan,pendaftaran online
+"online",cara_pendaftaran,layanan,pendaftaran online
+"daftar online",cara_pendaftaran,layanan,pendaftaran online
+"pendaftaran online",cara_pendaftaran,layanan,pendaftaran online
+"secara online",cara_pendaftaran,layanan,pendaftaran online
+"registrasi online",cara_pendaftaran,layanan,pendaftaran online
+"Saya ingin melakukan pendaftaran kunjungan online",cara_pendaftaran,layanan,pendaftaran online
+"offline",cara_pendaftaran,layanan,pendaftaran offline
+"langsung di tempat",cara_pendaftaran,layanan,pendaftaran offline
+"Bisa daftar langsung di tempat?",cara_pendaftaran,layanan,pendaftaran offline
+"Daftar ke kantor saja",cara_pendaftaran,layanan,pendaftaran offline
+"Syarat untuk besuk apa saja?",syarat_kunjungan,dokumen,KTP
+"Apakah wajib bawa KK?",syarat_kunjungan,dokumen,KK
+"Apakah fotokopi KTP diperlukan?",syarat_kunjungan,dokumen,KTP
+"Anak kecil boleh ikut masuk?",ketentuan_pengunjung,kategori,anak
+"Orang tua lanjut usia boleh ikut?",ketentuan_pengunjung,kategori,lansia
+"Loket registrasi di mana?",lokasi_layanan,tempat,loket
+"Pintu masuk pengunjung sebelah mana?",lokasi_layanan,tempat,pintu masuk
+"Petugas informasi ada di mana?",lokasi_layanan,tempat,meja informasi
+"Apakah ada nomor yang bisa dihubungi?",kontak,layanan,nomor telepon
+"Nomor admin kunjungan berapa?",kontak,layanan,nomor admin
+"Apa saja syarat pendaftaran?",syarat_kunjungan,kategori,persyaratan
+"Syarat daftar kunjungan apa saja?",syarat_kunjungan,kategori,persyaratan
+"Untuk daftar besuk perlu apa saja?",syarat_kunjungan,kategori,persyaratan
+"Persyaratan kunjungan apa saja ya?",syarat_kunjungan,kategori,persyaratan
+"Kalau mau daftar harus bawa apa?",syarat_kunjungan,kategori,persyaratan
+"Yang perlu dibawa untuk daftar apa saja?",syarat_kunjungan,kategori,persyaratan
+"Dokumen yang diperlukan apa saja?",syarat_kunjungan,dokumen,persyaratan
+"Untuk pendaftaran butuh berkas apa?",syarat_kunjungan,dokumen,berkas
+"Daftar kunjungan perlu identitas apa?",syarat_kunjungan,dokumen,identitas
+"Apa saja berkas untuk registrasi?",syarat_kunjungan,dokumen,berkas
+"Kalau mau besuk harus membawa apa?",syarat_kunjungan,kategori,persyaratan
+"Pertama kali daftar harus bagaimana?",cara_pendaftaran,layanan,pendaftaran awal
+"Saya baru pertama kali, syaratnya apa?",syarat_kunjungan,kategori,persyaratan
+"Apakah harus membawa KTP?",syarat_kunjungan,dokumen,KTP
+"Kalau tidak ada KTP bisa pakai SIM?",syarat_kunjungan,dokumen,SIM
+"Bisa pakai KK untuk daftar?",syarat_kunjungan,dokumen,KK
+"Halo",sapaan,kategori,salam
+"Hai",sapaan,kategori,salam
+"Selamat pagi",sapaan,waktu,pagi
+"Selamat siang",sapaan,waktu,siang
+"Selamat sore",sapaan,waktu,sore
+"Selamat malam",sapaan,waktu,malam
+"Permisi",sapaan,kategori,sopan
+"Assalamualaikum",sapaan,kategori,salam islam
+"Assalamu'alaikum",sapaan,kategori,salam islam
+"Hallo admin",sapaan,kategori,salam
+"Halo PAS Assistant",sapaan,kategori,salam
+"Saya ingin bertanya",sapaan,kategori,pembuka
+"Maaf saya mau tanya",sapaan,kategori,pembuka
+"Terima kasih",penutup,kategori,ucapan terima kasih
+"Terimakasih",penutup,kategori,ucapan terima kasih
+"Makasih",penutup,kategori,ucapan terima kasih
+"Terima kasih banyak",penutup,kategori,ucapan terima kasih
+"Baik terima kasih",penutup,kategori,ucapan terima kasih
+"Siap terima kasih",penutup,kategori,ucapan terima kasih
+"Oke makasih",penutup,kategori,ucapan terima kasih
+"Sudah jelas, terima kasih",penutup,kategori,ucapan terima kasih
+"Sampai jumpa",penutup,kategori,perpisahan
+"Bye",penutup,kategori,perpisahan
+"Dadah",penutup,kategori,perpisahan
+"Assalamualaikum, terima kasih",penutup,kategori,perpisahan
+"Saya ingin mendaftar kunjungan",cara_pendaftaran,layanan,pendaftaran
+"Saya mau mendaftar besuk warga binaan",cara_pendaftaran,layanan,pendaftaran
+"Saya ingin tahu cara daftar besuk",cara_pendaftaran,layanan,pendaftaran
+"Saya ingin datang berkunjung caranya bagaimana",cara_pendaftaran,layanan,pendaftaran
+"Saya mau tanya cara pendaftaran kunjungan",cara_pendaftaran,layanan,pendaftaran
+"Saya ingin tahu syarat pendaftaran apa saja",syarat_kunjungan,kategori,persyaratan
+"Saya ingin tanya dokumen apa saja untuk daftar",syarat_kunjungan,kategori,persyaratan
+"Mau tanya dong syarat buat besuk apa ya",syarat_kunjungan,kategori,persyaratan
+"Saya ingin besuk, syarat pendaftarannya apa saja?",syarat_kunjungan,kategori,persyaratan
