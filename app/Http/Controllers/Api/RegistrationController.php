@@ -10,9 +10,21 @@ class RegistrationController extends Controller
 {
     public function index()
     {
-        $registrations = Registration::orderBy('created_at', 'desc')->get();
-        // Load relationship or fallback to name matching
-        $registrations->map(function($reg) {
+        $registrations = Registration::orderBy('visit_date', 'asc')
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        // Calculate queue numbers per day
+        $dateCounts = [];
+        $registrations->map(function($reg) use (&$dateCounts) {
+            $date = $reg->visit_date;
+            if (!isset($dateCounts[$date])) {
+                $dateCounts[$date] = 0;
+            }
+            $dateCounts[$date]++;
+            $reg->queue_number = $dateCounts[$date];
+
+            // Load relationship or fallback to name matching
             if (!$reg->inmate_number) {
                 $wbp = \App\Models\WBP::where('nama', 'LIKE', '%' . $reg->inmate_name . '%')->first();
                 if ($wbp) {
@@ -23,7 +35,9 @@ class RegistrationController extends Controller
             }
             return $reg;
         });
-        return response()->json($registrations);
+
+        // Return sorted by latest created_at for the admin view
+        return response()->json($registrations->sortByDesc('created_at')->values());
     }
 
     public function store(Request $request)
