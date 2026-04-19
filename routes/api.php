@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\RegistrationController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ChatbotController;
+use App\Http\Controllers\Api\VisitorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

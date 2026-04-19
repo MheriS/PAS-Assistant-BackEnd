@@ -11,6 +11,9 @@ class VisitorController extends Controller
     public function show($nik)
     {
         $visitor = Visitor::find($nik);
+        if (!$visitor) {
+            return response()->json(['message' => 'Visitor not found'], 404);
+        }
         return response()->json($visitor);
     }
 
