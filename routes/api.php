@@ -24,6 +24,16 @@ Route::post('/visitors', [VisitorController::class, 'store']);
 
 Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
 
+// Visit Slots Routes
+Route::prefix('visit-slots')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\VisitSlotController::class, 'index']);
+    Route::get('/available-dates', [\App\Http\Controllers\Api\VisitSlotController::class, 'getAvailableDates']);
+    Route::get('/available-times/{date}', [\App\Http\Controllers\Api\VisitSlotController::class, 'getAvailableTimes']);
+    Route::post('/', [\App\Http\Controllers\Api\VisitSlotController::class, 'store']);
+    Route::delete('/{id}', [\App\Http\Controllers\Api\VisitSlotController::class, 'destroy']);
+    Route::patch('/{id}/toggle', [\App\Http\Controllers\Api\VisitSlotController::class, 'toggleAvailability']);
+});
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
