@@ -10,7 +10,20 @@ class RegistrationController extends Controller
 {
     public function index()
     {
-        return response()->json(Registration::orderBy('created_at', 'desc')->get());
+        $registrations = Registration::orderBy('created_at', 'desc')->get();
+        // Load relationship or fallback to name matching
+        $registrations->map(function($reg) {
+            if (!$reg->inmate_number) {
+                $wbp = \App\Models\WBP::where('nama', 'LIKE', '%' . $reg->inmate_name . '%')->first();
+                if ($wbp) {
+                    $reg->setRelation('wbp', $wbp);
+                }
+            } else {
+                $reg->load('wbp');
+            }
+            return $reg;
+        });
+        return response()->json($registrations);
     }
 
     public function store(Request $request)

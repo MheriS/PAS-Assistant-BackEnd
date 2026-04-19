@@ -26,4 +26,10 @@ class Registration extends Model
     ];
 
     public $incrementing = false;
-    protected $keyType = 'string';}
+    protected $keyType = 'string';
+
+    public function wbp()
+    {
+        return $this->belongsTo(WBP::class, 'inmate_number', 'no_regs');
+    }
+}
