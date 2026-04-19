@@ -9,6 +9,7 @@ import re
 import warnings
 
 # Silencing all warnings and TF info
+warnings.filtervoiced = False
 warnings.filterwarnings("ignore")
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
@@ -22,7 +23,39 @@ def get_path(filename):
     return os.path.join(BASE_DIR, filename)
 
 # ============================================================
-# DATA & MODEL LOADING (Best Effort)
+# NORMALIZATION DICTIONARY (Typo & Synonyms)
+# ============================================================
+normalization_dict = {
+    "mesjid": "masjid",
+    "musholla": "masjid",
+    "mushola": "masjid",
+    "yg": "yang",
+    "klo": "kalau",
+    "kalo": "kalau",
+    "dimana": "di mana",
+    "pendaftaran": "daftar",
+    "registrasi": "daftar",
+    "bgmn": "bagaimana",
+    "gmn": "bagaimana",
+    "tks": "terima kasih",
+    "trimakasih": "terima kasih",
+    "makasih": "terima kasih",
+    "bawa": "bawa",
+    "pagi": "pagi",
+    "siang": "siang",
+    "sore": "sore",
+    "malam": "malam"
+}
+
+def normalize_text(text):
+    text = str(text).lower()
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+    words = text.split()
+    normalized_words = [normalization_dict.get(word, word) for word in words]
+    return " ".join(normalized_words)
+
+# ============================================================
+# DATA & MODEL LOADING
 # ============================================================
 def load_all():
     data = {}
@@ -54,29 +87,25 @@ def load_all():
     except Exception as e:
         return {"error": str(e)}
 
-def clean_text(text):
-    text = str(text).lower()
-    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
-    return text
-
-def detect_intent_keyword(text):
-    if any(k in text for k in ["jadwal", "buka", "jam"]): return "cek_jadwal"
-    if any(k in text for k in ["daftar", "pendaftaran", "registrasi"]): return "cara_pendaftaran"
-    if any(k in text for k in ["barang", "bawa", "makanan", "minuman"]): return "barang_boleh"
-    if any(k in text for k in ["fasilitas", "lokasi", "tempat"]): return "fasilitas"
-    if any(k in text for k in ["halo", "hai", "selamat"]): return "sapaan"
-    return "unknown"
-
 def get_response(user_input, data):
     text = user_input.lower().strip()
-    cleaned = clean_text(user_input)
+    # Gunakan normalisasi baru
+    normalized = normalize_text(user_input)
     
-    intent = detect_intent_keyword(cleaned)
+    intent = "unknown"
     
+    # Priority 1: Keyword Detection (on normalized text)
+    if any(k in normalized for k in ["jadwal", "buka", "jam"]): intent = "cek_jadwal"
+    elif any(k in normalized for k in ["daftar", "pendaftaran"]): intent = "cara_pendaftaran"
+    elif any(k in normalized for k in ["barang", "bawa", "makanan"]): intent = "barang_boleh"
+    elif any(k in normalized for k in ["fasilitas", "lokasi", "tempat", "masjid", "toilet"]): intent = "fasilitas"
+    elif any(k in normalized for k in ["halo", "hai", "selamat"]): intent = "sapaan"
+    
+    # Priority 2: AI Intent Prediction (If keyword unknown)
     if intent == "unknown" and data.get("ai_active"):
         try:
             from tensorflow.keras.preprocessing.sequence import pad_sequences
-            seq = data["tokenizer"].texts_to_sequences([cleaned])
+            seq = data["tokenizer"].texts_to_sequences([normalized])
             padded = pad_sequences(seq, maxlen=20, padding='post')
             pred = data["model"].predict(padded, verbose=0)[0]
             idx = np.argmax(pred)
@@ -85,16 +114,16 @@ def get_response(user_input, data):
         except:
             pass
 
-    # Logic
+    # Logic based on intent
     if intent in ["barang_terlarang", "barang_bawaan", "barang_boleh"]:
         for _, row in data["barang"].iterrows():
             nama_brg = str(row["nama_barang"]).lower()
-            if nama_brg in text or any(k in text for k in nama_brg.split()):
+            if nama_brg in normalized or any(k in normalized for k in nama_brg.split()):
                 return f"Mohon maaf, {row['nama_barang']} {row['status']} dibawa masuk. {row['keterangan']}."
 
     if intent == "cek_jadwal":
         for _, row in data["jadwal"].iterrows():
-            if str(row["hari"]).lower() in text:
+            if str(row["hari"]).lower() in normalized:
                 keyword = "buka" if str(row["status"]).lower() == "buka" else "tutup"
                 res_rows = data["responses"][(data["responses"]["intent"] == "cek_jadwal") & (data["responses"]["keyword"] == keyword)]
                 if not res_rows.empty:
@@ -104,9 +133,15 @@ def get_response(user_input, data):
         return "Layanan kunjungan tersedia Senin-Jumat (09.00-14.00) dan Sabtu-Minggu (09.00-15.00)."
 
     if intent == "fasilitas":
+        # Synonyms mapping for facilities lookup
+        lookup_map = {"musholla": "masjid", "mesjid": "masjid", "toilet": "kamar mandi", "wc": "kamar mandi"}
+        search_text = normalized
+        for syn, target in lookup_map.items():
+            if syn in normalized: search_text = target; break
+
         for _, row in data["fasilitas"].iterrows():
             fas = str(row["nama_fasilitas"]).lower()
-            if fas in text or any(k in text for k in fas.split()):
+            if fas in search_text or any(k in search_text for k in fas.split()):
                 return f"{row['nama_fasilitas']} berada di {row['lokasi']}. {row['keterangan']}."
 
     res_rows = data["responses"][data["responses"]["intent"] == intent]
@@ -117,7 +152,7 @@ def get_response(user_input, data):
     selected_jawaban = None
     for _, row in res_rows.iterrows():
         kw = str(row["keyword"]).lower()
-        if kw != "default" and kw in text:
+        if kw != "default" and kw in normalized:
             selected_jawaban = random.choice(row["jawaban"].split("|"))
             break
             
