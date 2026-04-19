@@ -25,6 +25,7 @@ class VisitorController extends Controller
             'phone' => 'required|string',
             'address' => 'required|string',
             'relationship' => 'required|string',
+            'gender' => 'required|in:Laki-laki,Perempuan',
         ]);
 
         $visitor = Visitor::updateOrCreate(
@@ -34,6 +35,7 @@ class VisitorController extends Controller
                 'phone' => $validated['phone'],
                 'address' => $validated['address'],
                 'relationship' => $validated['relationship'],
+                'gender' => $validated['gender'],
                 'last_visit' => now(),
             ]
         );

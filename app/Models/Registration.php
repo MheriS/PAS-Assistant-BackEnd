@@ -23,6 +23,7 @@ class Registration extends Model
         'pengikut_perempuan',
         'pengikut_anak',
         'jumlah_pengikut',
+        'visitor_gender',
     ];
 
     public $incrementing = false;

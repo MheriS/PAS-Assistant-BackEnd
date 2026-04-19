@@ -18,4 +18,6 @@ class Visitor extends Model
         'relationship',
         'visit_count',
         'last_visit',
-    ];}
+        'gender',
+    ];
+}

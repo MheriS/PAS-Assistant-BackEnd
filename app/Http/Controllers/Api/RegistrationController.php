@@ -58,6 +58,7 @@ class RegistrationController extends Controller
             'pengikutPerempuan' => 'nullable|integer',
             'pengikutAnak' => 'nullable|integer',
             'jumlahPengikut' => 'nullable|integer',
+            'visitorGender' => 'required|in:Laki-laki,Perempuan',
         ]);
 
         $registration = Registration::create([
@@ -76,6 +77,7 @@ class RegistrationController extends Controller
             'pengikut_perempuan' => $validated['pengikutPerempuan'] ?? 0,
             'pengikut_anak' => $validated['pengikutAnak'] ?? 0,
             'jumlah_pengikut' => $validated['jumlahPengikut'] ?? 0,
+            'visitor_gender' => $validated['visitorGender'],
             'status' => 'pending',
         ]);
 
