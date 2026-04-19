@@ -15,5 +15,6 @@ class WBP extends Model
         'perkara',
         'blok',
         'kamar',
+        'foto',
     ];
 }

@@ -18,7 +18,7 @@ class WBPController extends Controller
 
         $wbps = WBP::where('nama', 'ILIKE', "%{$query}%")
             ->limit(10)
-            ->get(['nama', 'no_regs', 'blok', 'kamar']);
+            ->get(['nama', 'no_regs', 'blok', 'kamar', 'foto']);
 
         return response()->json($wbps);
     }

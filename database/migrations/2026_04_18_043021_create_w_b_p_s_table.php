@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('perkara');
             $table->string('blok');
             $table->string('kamar');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('w_b_p_s');
+        Schema::dropIfExists('wbps');
     }
 };

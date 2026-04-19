@@ -19,6 +19,7 @@ class WBPSeeder extends Seeder
             'perkara' => 'Pencurian',
             'blok' => 'A',
             'kamar' => '05',
+            'foto' => 'https://i.pravatar.cc/150?u=BI202312345',
         ]);
 
         \App\Models\WBP::create([
@@ -28,6 +29,7 @@ class WBPSeeder extends Seeder
             'perkara' => 'Narkotika',
             'blok' => 'Wanita',
             'kamar' => '01',
+            'foto' => 'https://i.pravatar.cc/150?u=BII202467890',
         ]);
         
         \App\Models\WBP::create([
@@ -37,6 +39,7 @@ class WBPSeeder extends Seeder
             'perkara' => 'Penipuan',
             'blok' => 'B',
             'kamar' => '12',
+            'foto' => 'https://i.pravatar.cc/150?u=BI202411223',
         ]);
     }
 }
