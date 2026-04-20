@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/wbps', [\App\Http\Controllers\Api\WBPController::class, 'index']);
+Route::get('/wbps/generate-no-reg', [\App\Http\Controllers\Api\WBPController::class, 'generateNoRegs']);
+Route::post('/wbps', [\App\Http\Controllers\Api\WBPController::class, 'store']);
+Route::patch('/wbps/{id}', [\App\Http\Controllers\Api\WBPController::class, 'update']);
 Route::get('/wbps/search', [\App\Http\Controllers\Api\WBPController::class, 'search']);
+Route::post('/wbps/{id}/movement', [\App\Http\Controllers\Api\WBPController::class, 'recordMovement']);
 Route::post('/chatbot', [ChatbotController::class, 'chat']);
 
 Route::get('/registrations', [RegistrationController::class, 'index']);

@@ -16,5 +16,11 @@ class WBP extends Model
         'blok',
         'kamar',
         'foto',
+        'status',
     ];
+
+    public function movements()
+    {
+        return $this->hasMany(WBPMovement::class, 'wbp_id');
+    }
 }
