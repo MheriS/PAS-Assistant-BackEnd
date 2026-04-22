@@ -29,6 +29,11 @@ class Registration extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public function medicineDeliveries()
+    {
+        return $this->hasMany(MedicineDelivery::class, 'registration_id', 'id');
+    }
+
     public function wbp()
     {
         return $this->belongsTo(WBP::class, 'inmate_number', 'no_regs');

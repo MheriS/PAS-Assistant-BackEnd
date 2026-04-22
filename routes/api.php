@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ChatbotController;
 use App\Http\Controllers\Api\VisitorController;
+use App\Http\Controllers\Api\MedicineDeliveryController;
+use App\Http\Controllers\MoneyDepositController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +40,22 @@ Route::prefix('visit-slots')->group(function () {
     Route::post('/', [\App\Http\Controllers\Api\VisitSlotController::class, 'store']);
     Route::delete('/{id}', [\App\Http\Controllers\Api\VisitSlotController::class, 'destroy']);
     Route::patch('/{id}/toggle', [\App\Http\Controllers\Api\VisitSlotController::class, 'toggleAvailability']);
+});
+
+// Medicine Delivery Routes
+Route::prefix('medicine-deliveries')->group(function () {
+    Route::get('/', [MedicineDeliveryController::class, 'index']);
+    Route::get('/rules', [MedicineDeliveryController::class, 'getRules']);
+    Route::post('/', [MedicineDeliveryController::class, 'store']);
+    Route::patch('/{id}/approval', [MedicineDeliveryController::class, 'updateApproval']);
+    Route::patch('/{id}/delivery', [MedicineDeliveryController::class, 'updateDelivery']);
+});
+
+Route::prefix('money-deposits')->group(function () {
+    Route::get('/', [MoneyDepositController::class, 'index']);
+    Route::post('/', [MoneyDepositController::class, 'store']);
+    Route::patch('/{id}/status', [MoneyDepositController::class, 'updateStatus']);
+    Route::delete('/{id}', [MoneyDepositController::class, 'destroy']);
 });
 
 Route::get('/user', function (Request $request) {

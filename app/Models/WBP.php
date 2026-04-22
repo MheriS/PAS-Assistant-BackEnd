@@ -19,6 +19,11 @@ class WBP extends Model
         'status',
     ];
 
+    public function medicineDeliveries()
+    {
+        return $this->hasMany(MedicineDelivery::class, 'wbp_id');
+    }
+
     public function movements()
     {
         return $this->hasMany(WBPMovement::class, 'wbp_id');
