@@ -10,7 +10,7 @@ cek_jadwal,buka,"Layanan kunjungan hari {hari} tersedia pukul {jam_mulai} sampai
 cek_jadwal,tutup,"Mohon maaf, hari {hari} tidak tersedia layanan kunjungan.|Hari {hari} layanan kunjungan tutup."
 cara_pendaftaran,online,"Tentu, untuk pendaftaran online silakan masuk ke menu tab Daftar Kunjungan.|Ya, Anda dapat melakukan pendaftaran melalui tab Daftar Kunjungan.|Silakan pilih menu Daftar Kunjungan untuk memulai proses pendaftaran online.|Untuk registrasi online, silakan buka tab Daftar Kunjungan pada halaman utama."
 cara_pendaftaran,offline,"Pendaftaran dapat dilakukan langsung di loket dengan membawa salah satu identitas resmi berupa SIM/KTP/KK.|Silakan datang ke loket pendaftaran untuk registrasi langsung dengan membawa KTP, KK, atau SIM."
-cara_pendaftaran,default,"Baik, apakah Anda ingin daftar online atau langsung di tempat?|Silakan pilih metode pendaftaran yang diinginkan."
+cara_pendaftaran,default,"Baik, apakah Anda ingin daftar online atau langsung di tempat?|Silakan pilih metode pendaftaran yang diinginkan. Online atau offline?"
 syarat_kunjungan,ktp,"Untuk pendaftaran cukup membawa KTP yang masih berlaku.|KTP dapat digunakan sebagai identitas pendaftaran."
 syarat_kunjungan,kk,"KK juga dapat digunakan untuk proses pendaftaran.|Kartu Keluarga dapat digunakan sebagai identitas."
 syarat_kunjungan,sim,"SIM yang masih berlaku juga dapat digunakan.|SIM bisa digunakan untuk registrasi kunjungan."
