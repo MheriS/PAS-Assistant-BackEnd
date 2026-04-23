@@ -132,6 +132,7 @@ def get_response(user_input, data):
     if any(k in normalized for k in ["jadwal", "buka", "jam"]): intent = "cek_jadwal"
     elif any(k in normalized for k in ["daftar", "pendaftaran"]): intent = "cara_pendaftaran"
     elif any(k in normalized for k in ["barang", "bawa", "makanan"]): intent = "barang_boleh"
+    elif any(k in normalized for k in ["syarat", "ketentuan", "identitas", "identitas diri"]): intent = "syarat_kunjungan"
     elif any(k in normalized for k in ["fasilitas", "lokasi", "tempat", "masjid", "toilet"]): intent = "fasilitas"
     elif any(k in normalized for k in ["halo", "hai", "selamat"]): intent = "sapaan"
     
@@ -164,6 +165,14 @@ def get_response(user_input, data):
         except:
             pass
 
+    # Priority 3: Fallback Item Detection (Search DataBarang names if still unknown)
+    if intent == "unknown":
+        for _, row in data["barang"].iterrows():
+            nama = str(row["nama_barang"]).lower()
+            if len(nama) >= 2 and nama in normalized:
+                intent = "barang_boleh"
+                break
+
     # ============================================================
     # PHASE 3: SPECIALIZED FALLBACK LOGIC
     # ============================================================
@@ -177,13 +186,34 @@ def get_response(user_input, data):
                     template = random.choice(res_rows_sched.iloc[0]["jawaban"].split("|"))
                     try: return template.format(hari=row["hari"], jam_mulai=row.get("jam_mulai", ""), jam_selesai=row.get("jam_selesai", ""))
                     except: return template.replace("{hari}", str(row["hari"]))
-        return "Layanan kunjungan tersedia Senin-Jumat (09.00-14.00) dan Sabtu-Minggu (09.00-15.00)."
+        
+        # Fallback: Jika tidak ada hari khusus, beri ringkasan hari apa saja yang buka
+        buka_days = data["jadwal"][data["jadwal"]["status"].str.lower() == "buka"]
+        if not buka_days.empty:
+            summary = "Berikut adalah jadwal pendaftaran kunjungan: "
+            details = []
+            for _, r in buka_days.iterrows():
+                details.append(f"{r['hari']} ({r['jam_mulai']} - {r['jam_selesai']})")
+            return summary + ", ".join(details) + ". Hari lainnya layanan tutup."
+        
+        return "Mohon maaf, saat ini sedang tidak ada jadwal layanan kunjungan yang tersedia."
 
     if intent in ["barang_terlarang", "barang_bawaan", "barang_boleh"]:
-        for _, row in data["barang"].iterrows():
-            nama_brg = str(row["nama_barang"]).lower()
-            if nama_brg in normalized or any(k in normalized for k in nama_brg.split()):
-                return f"Mohon maaf, {row['nama_barang']} {row['status']} dibawa masuk. {row['keterangan']}."
+        # Filter kata kunci umum agar tidak tumpang tindih dengan nama barang spesifik
+        query_words = [w for w in normalized.split() if w not in ["barang", "bawa", "makanan", "apa", "saja", "boleh", "dilarang"]]
+        
+        if query_words:
+            for _, row in data["barang"].iterrows():
+                nama_brg = str(row["nama_barang"]).lower()
+                # Cocokkan jika nama barang ada di input atau kata kunci spesifik ada di input
+                if nama_brg in normalized or any(kw in normalized for kw in nama_brg.split() if kw not in ["barang", "makanan"]):
+                    return f"Mohon maaf, {row['nama_barang']} {row['status']} dibawa masuk. {row['keterangan']}."
+        
+        # Fallback: Jika tidak ada barang spesifik yang disebut, berikan ringkasan
+        dilarang_items = data["barang"][data["barang"]["status"].str.lower() == "dilarang"]
+        if not dilarang_items.empty:
+            sampel = dilarang_items["nama_barang"].head(5).tolist()
+            return f"Secara umum, barang yang dilarang meliputi: {', '.join(sampel)}, dan benda terlarang lainnya. Untuk daftar lengkap, silakan cek tab Informasi atau menu Barang."
 
     if intent == "fasilitas":
         lookup_map = {"musholla": "masjid", "mesjid": "masjid", "toilet": "kamar mandi", "wc": "kamar mandi"}
