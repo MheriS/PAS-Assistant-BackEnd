@@ -4,10 +4,26 @@ text,intent,entity_name,entity_value
 "Jadwal kunjungan hari Rabu bagaimana?",cek_jadwal,hari,Rabu
 "Apakah hari Kamis bisa membesuk?",cek_jadwal,hari,Kamis
 "Apakah hari Jumat ada layanan kunjungan?",cek_jadwal,hari,Jumat
+"Besuk hari selasa buka?",cek_jadwal,hari,Selasa
+"Hari kamis buka kunjungan?",cek_jadwal,hari,Kamis
+"Selasa ada besuk?",cek_jadwal,hari,Selasa
+"Kamis bisa kunjungan?",cek_jadwal,hari,Kamis
 "Apakah boleh membawa makanan?",barang_bawaan,jenis_barang,makanan
 "Bolehkah membawa nasi dan lauk?",barang_bawaan,jenis_barang,makanan
 "Apakah boleh membawa minuman botol?",barang_bawaan,jenis_barang,minuman
 "Apakah air mineral boleh dibawa?",barang_bawaan,jenis_barang,minuman
+"Boleh bawa makanan nggak?",barang_bawaan,jenis_barang,makanan
+"Makanan boleh dibawa?",barang_bawaan,jenis_barang,makanan
+"Minuman boleh dibawa?",barang_bawaan,jenis_barang,minuman
+"Boleh bawa air?",barang_bawaan,jenis_barang,minuman
+"Rokok boleh dibawa?",barang_terlarang,jenis_barang,rokok
+"HP boleh dibawa masuk?",barang_terlarang,jenis_barang,handphone
+"Charger boleh dibawa?",barang_terlarang,jenis_barang,charger
+"Benda tajam boleh dibawa?",barang_terlarang,jenis_barang,benda tajam
+"Pakai sandal boleh?",ketentuan_pakaian,jenis_pakaian,sandal
+"Pakai kaos boleh?",ketentuan_pakaian,jenis_pakaian,kaos
+"Harus rapi ya pakaiannya?",ketentuan_pakaian,kategori,pakaian sopan
+"Aturan baju bagaimana?",ketentuan_pakaian,kategori,pakaian
 "Barang apa saja yang dilarang?",barang_terlarang,jenis_barang,barang terlarang
 "Apakah boleh membawa rokok?",barang_terlarang,jenis_barang,rokok
 "Apakah charger HP boleh dibawa?",barang_terlarang,jenis_barang,charger
@@ -19,6 +35,23 @@ text,intent,entity_name,entity_value
 "Kamar mandi sebelah mana?",fasilitas,nama_fasilitas,kamar mandi
 "Ruang tunggu ada di mana?",fasilitas,nama_fasilitas,ruang tunggu
 "Musholla ada di mana?",fasilitas,nama_fasilitas,musholla
+"Masjid ada di mana?",fasilitas,nama_fasilitas,masjid
+"Masjid di mana ya?",fasilitas,nama_fasilitas,masjid
+"Letak masjid di mana?",fasilitas,nama_fasilitas,masjid
+"Lokasi masjid di mana?",fasilitas,nama_fasilitas,masjid
+"Apakah ada masjid di lapas?",fasilitas,nama_fasilitas,masjid
+"Masjid tersedia di dalam lapas?",fasilitas,nama_fasilitas,masjid
+"Kalau mau sholat di mana?",fasilitas,nama_fasilitas,masjid
+"Tempat ibadah di mana?",fasilitas,nama_fasilitas,masjid
+"Sholat di mana ya?",fasilitas,nama_fasilitas,masjid
+"Ada tempat sholat?",fasilitas,nama_fasilitas,masjid
+"Masjid untuk pengunjung di mana?",fasilitas,nama_fasilitas,masjid
+"Pengunjung bisa sholat di mana?",fasilitas,nama_fasilitas,masjid
+"Kalau mau ibadah di mana?",fasilitas,nama_fasilitas,masjid
+"Tempat ibadah pengunjung di mana?",fasilitas,nama_fasilitas,masjid
+"Ada musholla atau masjid?",fasilitas,nama_fasilitas,masjid
+"Apakah ada musholla untuk pengunjung?",fasilitas,nama_fasilitas,musholla
+"Musholla di mana ya?",fasilitas,nama_fasilitas,musholla
 "Tempat parkir ada di mana?",fasilitas,nama_fasilitas,tempat parkir
 "Berapa lama durasi kunjungan?",durasi_kunjungan,durasi,waktu
 "Durasi besuk berapa menit?",durasi_kunjungan,durasi,menit
@@ -30,7 +63,6 @@ text,intent,entity_name,entity_value
 "Apakah balita boleh ikut kunjungan?",ketentuan_pengunjung,kategori,anak
 "Loket pendaftaran di mana?",lokasi_layanan,tempat,loket
 "Ruang registrasi ada di mana?",lokasi_layanan,tempat,loket
-"Apakah ada musholla untuk pengunjung?",fasilitas,nama_fasilitas,musholla
 "Apakah tersedia kursi tunggu?",fasilitas,nama_fasilitas,ruang tunggu
 "Bisakah membawa pakaian ganti untuk warga binaan?",barang_bawaan,jenis_barang,pakaian
 "Apakah boleh membawa sabun atau perlengkapan mandi?",barang_bawaan,jenis_barang,perlengkapan mandi
@@ -70,7 +102,6 @@ text,intent,entity_name,entity_value
 "Boleh pakai topi?",ketentuan_pakaian,jenis_pakaian,topi
 "WC ada di mana?",fasilitas,nama_fasilitas,kamar mandi
 "Toilet sebelah mana?",fasilitas,nama_fasilitas,kamar mandi
-"Musholla di mana ya?",fasilitas,nama_fasilitas,musholla
 "Parkiran motor di mana?",fasilitas,nama_fasilitas,tempat parkir
 "Ruang tunggu sebelah mana?",fasilitas,nama_fasilitas,ruang tunggu
 "Apakah ada tempat duduk untuk menunggu?",fasilitas,nama_fasilitas,ruang tunggu
@@ -85,10 +116,21 @@ text,intent,entity_name,entity_value
 "secara online",cara_pendaftaran,layanan,pendaftaran online
 "registrasi online",cara_pendaftaran,layanan,pendaftaran online
 "Saya ingin melakukan pendaftaran kunjungan online",cara_pendaftaran,layanan,pendaftaran online
+"Saya mau daftar online",cara_pendaftaran,layanan,pendaftaran online
+"Mau daftar online gimana?",cara_pendaftaran,layanan,pendaftaran online
+"Daftar online bisa?",cara_pendaftaran,layanan,pendaftaran online
+"Apakah bisa registrasi online?",cara_pendaftaran,layanan,pendaftaran online
+"Saya ingin registrasi online",cara_pendaftaran,layanan,pendaftaran online
+"Bagaimana cara daftar online?",cara_pendaftaran,layanan,pendaftaran online
+"Online daftar kunjungan bagaimana?",cara_pendaftaran,layanan,pendaftaran online
 "offline",cara_pendaftaran,layanan,pendaftaran offline
 "langsung di tempat",cara_pendaftaran,layanan,pendaftaran offline
 "Bisa daftar langsung di tempat?",cara_pendaftaran,layanan,pendaftaran offline
 "Daftar ke kantor saja",cara_pendaftaran,layanan,pendaftaran offline
+"Saya mau daftar langsung",cara_pendaftaran,layanan,pendaftaran offline
+"Daftar langsung bisa?",cara_pendaftaran,layanan,pendaftaran offline
+"Saya datang langsung saja",cara_pendaftaran,layanan,pendaftaran offline
+"Registrasi langsung di tempat",cara_pendaftaran,layanan,pendaftaran offline
 "Syarat untuk besuk apa saja?",syarat_kunjungan,dokumen,KTP
 "Apakah wajib bawa KK?",syarat_kunjungan,dokumen,KK
 "Apakah fotokopi KTP diperlukan?",syarat_kunjungan,dokumen,KTP
