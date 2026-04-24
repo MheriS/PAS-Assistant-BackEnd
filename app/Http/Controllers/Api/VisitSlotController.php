@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\VisitSlot;
+use App\Models\RecurringVisitSlot;
 use Carbon\Carbon;
 
 class VisitSlotController extends Controller
@@ -17,27 +18,77 @@ class VisitSlotController extends Controller
 
     public function getAvailableDates()
     {
-        $dates = VisitSlot::where('date', '>=', now()->toDateString())
-            ->where('is_available', true)
-            ->distinct()
-            ->orderBy('date', 'asc')
-            ->pluck('date')
-            ->map(function($date) {
-                return \Carbon\Carbon::parse($date)->toDateString();
+        $startDate = now();
+        $endDate = now()->addDays(30);
+        
+        $availableDates = [];
+        
+        // 1. Get dates from specific slots
+        $specificSlots = VisitSlot::where('date', '>=', $startDate->toDateString())
+            ->where('date', '<=', $endDate->toDateString())
+            ->get()
+            ->groupBy(function($slot) {
+                return $slot->date->toDateString();
             });
 
-        return response()->json($dates);
+        // 2. Get recurring rules
+        $recurringRules = RecurringVisitSlot::where('is_active', true)->get()->groupBy('day_of_week');
+
+        // 3. Iterate through next 30 days
+        for ($i = 0; $i < 30; $i++) {
+            $currentDate = $startDate->copy()->addDays($i);
+            $dateString = $currentDate->toDateString();
+            $dayOfWeek = $currentDate->dayOfWeek; // 0 (Sun) - 6 (Sat)
+
+            // If a specific slot exists for this date
+            if (isset($specificSlots[$dateString])) {
+                $hasAvailable = $specificSlots[$dateString]->contains('is_available', true);
+                if ($hasAvailable) {
+                    $availableDates[] = $dateString;
+                }
+            } 
+            // If no specific slot, check recurring rules
+            elseif (isset($recurringRules[$dayOfWeek])) {
+                $availableDates[] = $dateString;
+            }
+        }
+
+        return response()->json(array_unique($availableDates));
     }
 
     public function getAvailableTimes($date)
     {
-        $parsedDate = \Carbon\Carbon::parse($date)->toDateString();
-        $slots = VisitSlot::where('date', $parsedDate)
+        $parsedDate = Carbon::parse($date);
+        $dateString = $parsedDate->toDateString();
+        $dayOfWeek = $parsedDate->dayOfWeek;
+
+        // Check for specific slots first
+        $specificSlots = VisitSlot::where('date', $dateString)
             ->where('is_available', true)
             ->orderBy('start_time', 'asc')
             ->get(['id', 'session_name', 'start_time', 'end_time', 'max_visitors']);
 
-        return response()->json($slots);
+        if ($specificSlots->isNotEmpty()) {
+            return response()->json($specificSlots);
+        }
+
+        // If no specific slots, return recurring slots as virtual instances
+        $recurringSlots = RecurringVisitSlot::where('day_of_week', $dayOfWeek)
+            ->where('is_active', true)
+            ->orderBy('start_time', 'asc')
+            ->get()
+            ->map(function($rule) use ($dateString) {
+                return [
+                    'id' => "rec-{$rule->id}-{$dateString}", // Virtual ID
+                    'session_name' => $rule->session_name,
+                    'start_time' => $rule->start_time,
+                    'end_time' => $rule->end_time,
+                    'max_visitors' => $rule->max_visitors,
+                    'is_recurring' => true
+                ];
+            });
+
+        return response()->json($recurringSlots);
     }
 
     public function store(Request $request)

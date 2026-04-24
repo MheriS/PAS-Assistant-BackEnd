@@ -42,6 +42,14 @@ Route::prefix('visit-slots')->group(function () {
     Route::patch('/{id}/toggle', [\App\Http\Controllers\Api\VisitSlotController::class, 'toggleAvailability']);
 });
 
+// Recurring Visit Slots Routes
+Route::prefix('recurring-visit-slots')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\RecurringVisitSlotController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\Api\RecurringVisitSlotController::class, 'store']);
+    Route::patch('/{id}', [\App\Http\Controllers\Api\RecurringVisitSlotController::class, 'update']);
+    Route::delete('/{id}', [\App\Http\Controllers\Api\RecurringVisitSlotController::class, 'destroy']);
+});
+
 // Medicine Delivery Routes
 Route::prefix('medicine-deliveries')->group(function () {
     Route::get('/', [MedicineDeliveryController::class, 'index']);
