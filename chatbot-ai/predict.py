@@ -54,6 +54,15 @@ def normalize_text(text):
     normalized_words = [normalization_dict.get(word, word) for word in words]
     return " ".join(normalized_words)
 
+def get_jadwal_summary_text(data):
+    buka_days = data["jadwal"][data["jadwal"]["status"].str.lower() == "buka"]
+    if not buka_days.empty:
+        details = []
+        for _, r in buka_days.iterrows():
+            details.append(f"{r['hari']} ({r['jam_mulai']} - {r['jam_selesai']})")
+        return ", ".join(details)
+    return "tidak ada jadwal layanan"
+
 # ============================================================
 # DATA & MODEL LOADING
 # ============================================================
@@ -114,10 +123,18 @@ def get_response(user_input, data):
     
     for _, row in data["responses"].iterrows():
         kw = str(row["keyword"]).lower()
-        if kw != "default" and kw in normalized:
+        jawaban = str(row["jawaban"])
+        
+        # Skip keywords that are "default" or templates that contain placeholders (indicated by "{")
+        # because those templates require context handled in Phase 3.
+        if kw == "default" or "{" in jawaban:
+            continue
+            
+        # Use word boundaries to avoid partial matches (e.g., "buka" matching "dibuka")
+        if re.search(rf'\b{re.escape(kw)}\b', normalized):
             # If multiple keywords match, prioritize the longest one
             if len(kw) > best_keyword_len:
-                selected_jawaban = random.choice(row["jawaban"].split("|"))
+                selected_jawaban = random.choice(jawaban.split("|"))
                 best_keyword_len = len(kw)
 
     if selected_jawaban:
@@ -134,6 +151,11 @@ def get_response(user_input, data):
     elif any(k in normalized for k in ["barang", "bawa", "makanan"]): intent = "barang_boleh"
     elif any(k in normalized for k in ["syarat", "ketentuan", "identitas", "identitas diri"]): intent = "syarat_kunjungan"
     elif any(k in normalized for k in ["fasilitas", "lokasi", "tempat", "masjid", "toilet"]): intent = "fasilitas"
+    elif any(k in normalized for k in ["durasi", "menit", "lama"]): intent = "durasi_kunjungan"
+    elif any(k in normalized for k in ["anak", "balita", "lansia"]): intent = "ketentuan_pengunjung"
+    elif any(k in normalized for k in ["loket", "pintu", "meja informasi"]): intent = "lokasi_layanan"
+    elif any(k in normalized for k in ["nomor", "telepon", "admin", "hubungi", "wa"]): intent = "kontak"
+    elif any(k in normalized for k in ["pakaian", "baju", "sandal", "kaos", "celana"]): intent = "ketentuan_pakaian"
     elif any(k in normalized for k in ["halo", "hai", "selamat"]): intent = "sapaan"
     
     # Priority 2: AI Intent Prediction (If keyword unknown)
@@ -236,11 +258,16 @@ def get_response(user_input, data):
 
     default_row = res_rows[res_rows["keyword"].str.lower() == "default"]
     if not default_row.empty:
-        return random.choice(default_row.iloc[0]["jawaban"].split("|"))
+        ans = random.choice(default_row.iloc[0]["jawaban"].split("|"))
     elif not res_rows.empty:
-        return random.choice(res_rows.iloc[0]["jawaban"].split("|"))
+        ans = random.choice(res_rows.iloc[0]["jawaban"].split("|"))
+    else:
+        ans = "Maaf, saya belum memahami pertanyaan Anda."
+
+    if "{jadwal}" in ans:
+        ans = ans.replace("{jadwal}", get_jadwal_summary_text(data))
     
-    return "Maaf, saya belum memahami pertanyaan Anda."
+    return ans
 
 if __name__ == "__main__":
     try:

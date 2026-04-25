@@ -191,3 +191,26 @@ text,intent,entity_name,entity_value
 "Saya ingin tanya dokumen apa saja untuk daftar",syarat_kunjungan,kategori,persyaratan
 "Mau tanya dong syarat buat besuk apa ya",syarat_kunjungan,kategori,persyaratan
 "Saya ingin besuk, syarat pendaftarannya apa saja?",syarat_kunjungan,kategori,persyaratan
+"Bisa daftar kunjungan dari sekarang nggak?",pendaftaran_awal,waktu,lebih awal
+"Kalau mau besuk minggu depan, daftar sekarang bisa?",pendaftaran_awal,waktu,minggu depan
+"Daftar kunjungan harus pas hari H ya?",pendaftaran_awal,waktu,hari H
+"Boleh daftar beberapa hari sebelumnya?",pendaftaran_awal,waktu,beberapa hari sebelumnya
+"Kalau saya daftar dari jauh-jauh hari bisa nggak?",pendaftaran_awal,waktu,jauh hari
+"Mau daftar lebih awal bisa ya?",pendaftaran_awal,waktu,lebih awal
+"Besuk nanti minggu depan, daftar sekarang boleh?",pendaftaran_awal,waktu,minggu depan
+"Harus daftar hari itu juga atau bisa sebelumnya?",pendaftaran_awal,waktu,sebelumnya
+"Kalau daftar sekarang buat beberapa hari lagi bisa?",pendaftaran_awal,waktu,beberapa hari lagi
+"Saya mau booking jadwal kunjungan dari sekarang bisa?",pendaftaran_awal,waktu,booking awal
+"Bisa reservasi kunjungan lebih awal?",pendaftaran_awal,waktu,reservasi awal
+"Kalau belum hari kunjungan, sudah bisa daftar belum?",pendaftaran_awal,waktu,sebelum hari H
+"Daftarnya bisa dari sekarang atau nunggu hari kunjungan?",pendaftaran_awal,waktu,lebih awal
+"Saya mau amankan slot kunjungan dari sekarang, bisa?",pendaftaran_awal,waktu,slot awal
+"Kalau kuotanya cepat penuh, bisa daftar lebih dulu kan?",pendaftaran_awal,waktu,lebih dulu
+"Saya ingin daftar hari ini untuk kunjungan minggu depan, apakah bisa?",pendaftaran_awal,waktu,minggu depan
+"Saya mau daftar sekarang untuk minggu depan bisa?",pendaftaran_awal,waktu,minggu depan
+"Kalau daftar hari ini buat minggu depan boleh?",pendaftaran_awal,waktu,minggu depan
+"Saya daftar sekarang untuk kunjungan minggu depan bisa ya?",pendaftaran_awal,waktu,minggu depan
+"Daftar hari ini untuk jadwal minggu depan bisa?",pendaftaran_awal,waktu,minggu depan
+"Saya mau booking dari sekarang untuk minggu depan",pendaftaran_awal,waktu,booking awal
+"Kalau daftar sekarang buat hari lain bisa?",pendaftaran_awal,waktu,lebih awal
+"Saya ingin reservasi kunjungan beberapa hari ke depan",pendaftaran_awal,waktu,reservasi awal
