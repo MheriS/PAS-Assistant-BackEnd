@@ -1,0 +1,39 @@
+nama_barang,status,keterangan
+"Makanan serbuk/bubuk",makanan,dilarang
+"Mie instan",makanan,dilarang
+Rokok,produk-tembakau,dilarang
+"Kacang kulit",makanan,dilarang
+"Kacang atom",makanan,dilarang
+Rambak,makanan,dilarang
+Roti,makanan,dilarang
+"Bumbu pecel",makanan,dilarang
+Permen,makanan,dilarang
+"Makanan berongga",makanan,dilarang
+"Cumi-cumi utuh",makanan,dilarang
+Serundeng,makanan,dilarang
+Sambal,makanan,dilarang
+Perkedel,makanan,dilarang
+Tahu,makanan,dilarang
+Pentol,makanan,dilarang
+Bakso,makanan,dilarang
+Gorengan,makanan,dilarang
+Cabe,makanan,dilarang
+Bawang,makanan,dilarang
+"Bumbu masakan",makanan,dilarang
+"Masakan berkuah",makanan,dilarang
+"Semua minuman",minuman,dilarang
+Parfum,barang,dilarang
+"Roll on",barang,dilarang
+"Sikat gigi",barang,dilarang
+"Sabun cuci",barang,dilarang
+"Pasta gigi",barang,dilarang
+"Kemasan kaca",barang,dilarang
+Kaleng,barang,dilarang
+Sachet,barang,dilarang
+Kasur,barang,dilarang
+"Pakaian lebih dari 2 potong",barang,dilarang
+Narkoba,barang,dilarang
+Senpi,barang,dilarang
+Sajam,barang,dilarang
+HP,barang,dilarang
+"Barang elektronik",barang,dilarang
